@@ -1,8 +1,15 @@
-# clonecoin
-![image](logo.png)
+<h1>
+    <p align="center">
+        clonecoin
+    </p>
+</h1>
+<p align="center">
+    <img src="logo.png">
+</p>
 
-## Description
-A preliminary journey into blockchain by creating a custom python blockchain.
+Clonecoin is a custom (and very basic) clone of bitcoin using developed with Python3. 
+
+This has been developed for learning purposes only and as such it differs from the Bitcoin protocol heavily.
 
 ## Todo
 - [x] Basic Blockchain Class Implementation
