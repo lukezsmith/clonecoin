@@ -2,6 +2,10 @@ import hashlib
 import json
 from time import time
 import pprint
+from fastecdsa import keys, curve,ecdsa
+
+
+from clonecoin.crypto import generate_private_key, get_public_key, get_address
 
 class Clonechain(object):
     def __init__(self):
@@ -52,26 +56,18 @@ class Clonechain(object):
 
         return hex_hash
 
+class Wallet(object):
+    def __init__(self):
+
+        # generate private key
+        self.private_key = generate_private_key()
+        # get public key
+        self.public_key = get_public_key(self.private_key)
+        # get wallet address
+        self.address = get_address(self.public_key)
     
 if __name__ == "__main__":
     # instantiate blockchain
     blockchain = Clonechain()
-
-    # create pending transactions
-    t1 = blockchain.new_transaction("Satoshi", "Mike", '5 BTC')
-    t2 = blockchain.new_transaction("Mike", "Satoshi", '1 BTC')
-    t3 = blockchain.new_transaction("Satoshi", "Hal Finney", '5 BTC')
-    # commit pending transactions to a new block with an integer proof which is then added to the chain
-    blockchain.new_block(12345)
-
-    # create pending transactions 
-    t4 = blockchain.new_transaction("Mike", "Alice", '1 BTC')
-    t5 = blockchain.new_transaction("Alice", "Bob", '0.5 BTC')
-    t6 = blockchain.new_transaction("Bob", "Mike", '0.5 BTC')
-    # commit pending transactions to a new block with an integer proof which is then added to the chain
-    blockchain.new_block(6789)
-
-    # print blockchain
-    pp = pprint.PrettyPrinter(indent=4)
-    print("Blockchain: ")
-    pp.pprint(blockchain.chain)
+    # instantiate a wallet 
+    wallet = Wallet()
